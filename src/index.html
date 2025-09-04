@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>DefenderLink</title>
+</head>
+<body>
+  <h1>DefenderLink — Проверка ссылок и файлов</h1>
+
+  <h2>Проверка URL</h2>
+  <input type="text" id="urlInput" placeholder="Введите URL">
+  <button onclick="checkUrl()">Проверить</button>
+  <pre id="urlResult"></pre>
+
+  <h2>Проверка файла</h2>
+  <input type="file" id="fileInput">
+  <button onclick="checkFile()">Загрузить</button>
+  <pre id="fileResult"></pre>
+
+  <script>
+    async function checkUrl() {
+      const url = document.getElementById("urlInput").value;
+      const res = await fetch("/.netlify/functions/check-url", {
+        method: "POST",
+        body: JSON.stringify({ url }),
+      });
+      document.getElementById("urlResult").textContent = await res.text();
+    }
+
+    async function checkFile() {
+      const file = document.getElementById("fileInput").files[0];
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64 = reader.result.split(",")[1];
+        const res = await fetch("/.netlify/functions/check-file", {
+          method: "POST",
+          body: JSON.stringify({ file: base64 }),
+        });
+        document.getElementById("fileResult").textContent = await res.text();
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+</body>
+</html>

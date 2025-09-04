@@ -1,0 +1,19 @@
+{
+  "name": "defenderlink",
+  "version": "1.0.0",
+  "description": "Phishing and malware detection service",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step needed'",
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "netlify-cli": "^8.0.0"
+  },
+  "keywords": ["security", "phishing", "malware", "detection"],
+  "author": "DefenderLink Team",
+  "license": "MIT"
+}
