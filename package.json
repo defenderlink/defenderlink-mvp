@@ -8,12 +8,19 @@
     "dev": "netlify dev"
   },
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "busboy": "^1.6.0",
+    "form-data": "^4.0.0"
   },
   "devDependencies": {
     "netlify-cli": "^8.0.0"
   },
-  "keywords": ["security", "phishing", "malware", "detection"],
+  "keywords": [
+    "security",
+    "phishing",
+    "malware",
+    "detection"
+  ],
   "author": "DefenderLink Team",
   "license": "MIT"
 }
