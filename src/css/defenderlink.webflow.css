@@ -1288,7 +1288,7 @@
 .image_cover {
   object-fit: cover;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .image_cover.radius_all-0 {
@@ -5949,6 +5949,10 @@ img {
 
   p {
     font-size: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1755161563689_typography---text--text-size-mobile-p);
+  }
+
+  .button-2, .button-3 {
+    width: 100%;
   }
 }
 
