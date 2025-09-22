@@ -507,6 +507,7 @@
 .grid_2-col.gap-xsmall {
   grid-column-gap: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1755161563689_sizes---gap--xs-gap);
   grid-row-gap: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1755161563689_sizes---gap--xs-gap);
+  grid-template-columns: 1fr;
 }
 
 .heading_huge {
@@ -1808,6 +1809,12 @@
   align-items: center;
   display: flex;
   position: relative;
+}
+
+.icon_small-1x1.text-color_inherit {
+  background-image: url('../images/Telegram_logo.svg.webp');
+  background-position: 0 0;
+  background-size: auto;
 }
 
 .is-large-1x1 {
@@ -5108,6 +5115,24 @@ img {
   width: 180px;
 }
 
+.svg-2 {
+  background-image: url('../images/Telegram_logo.svg.webp');
+  background-position: 0 0;
+  background-size: auto;
+}
+
+.path {
+  background-image: url('../images/Telegram_logo.svg.webp');
+  background-position: 0 0;
+  background-size: 256px;
+}
+
+.svg-3 {
+  background-image: url('../images/Telegram_logo.svg.webp');
+  background-position: 0 0;
+  background-size: auto;
+}
+
 @media screen and (max-width: 991px) {
   .section {
     padding-top: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1755161563689_sizes---section--section-padding-vertical-tablet);
@@ -6133,14 +6158,6 @@ img {
   grid-area: span 3 / span 1 / span 3 / span 1;
 }
 
-#w-node-d6087977-8b0a-d9ab-f850-e60c822f5901-822f58ea.w-node-d337c7fd-9ed4-7325-790b-22d064d99cab-2d5496c4, #w-node-d6087977-8b0a-d9ab-f850-e60c822f5903-822f58ea.w-node-d337c7fd-9ed4-7325-790b-22d064d99cac-2d5496c4 {
-  grid-area: span 4 / span 1 / span 4 / span 1;
-}
-
-#w-node-d6087977-8b0a-d9ab-f850-e60c822f5905-822f58ea.w-node-d337c7fd-9ed4-7325-790b-22d064d99cad-2d5496c4 {
-  grid-area: span 3 / span 1 / span 3 / span 1;
-}
-
 #check-url-btn.w-node-_02f93fd2-ab98-a383-ee71-d22b5ff5503d-2d5496c4 {
   grid-area: span 1 / span 1 / span 1 / span 1;
 }
@@ -6472,7 +6489,7 @@ img {
 }
 
 @media screen and (max-width: 767px) {
-  #w-node-d6087977-8b0a-d9ab-f850-e60c822f58ff-822f58ea.w-node-d337c7fd-9ed4-7325-790b-22d064d99caa-2d5496c4, #w-node-d6087977-8b0a-d9ab-f850-e60c822f5901-822f58ea.w-node-d337c7fd-9ed4-7325-790b-22d064d99cab-2d5496c4, #w-node-d6087977-8b0a-d9ab-f850-e60c822f5903-822f58ea.w-node-d337c7fd-9ed4-7325-790b-22d064d99cac-2d5496c4, #w-node-d6087977-8b0a-d9ab-f850-e60c822f5905-822f58ea.w-node-d337c7fd-9ed4-7325-790b-22d064d99cad-2d5496c4, #w-node-_851d61a1-1dad-400a-5b6a-92b99f998536-b17c3d94.w-node-_3df8a8ac-96cb-7017-cf68-77dfe1997cae-e1997cab {
+  #w-node-d6087977-8b0a-d9ab-f850-e60c822f58ff-822f58ea.w-node-d337c7fd-9ed4-7325-790b-22d064d99caa-2d5496c4, #w-node-_851d61a1-1dad-400a-5b6a-92b99f998536-b17c3d94.w-node-_3df8a8ac-96cb-7017-cf68-77dfe1997cae-e1997cab {
     grid-area: span 1 / span 2 / span 1 / span 2;
   }
 
