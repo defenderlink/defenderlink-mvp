@@ -3,4 +3,5 @@ node_modules/
 .netlify/
 .env
 .DS_Store
-dist/
+dist/".env" 
+".env.local" 
