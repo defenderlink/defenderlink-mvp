@@ -1,14 +1,111 @@
+# Netlify Configuration для Webflow фронтенда + Serverless функций
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
 [build]
+  # Папка с Webflow экспортом (фронтенд)
   publish = "src"
+  
+  # Папка с serverless функциями
   functions = "netlify/functions"
+  
+  # Команда сборки (не нужна для Webflow)
+  command = "echo 'No build step needed for Webflow export'"
 
 [build.environment]
-  NODE_VERSION = "16"
+  # Версия Node.js для функций
+  NODE_VERSION = "18"
 
+# ============================================================================
+# ФУНКЦИИ - Конфигурация
+# ============================================================================
+
+[functions]
+  # Директория с функциями
+  directory = "netlify/functions"
+  
+  # Бандлер для зависимостей
+  node_bundler = "esbuild"
+  
+  # Включить все JS файлы
+  included_files = ["netlify/functions/**/*.js"]
+
+# ============================================================================
+# ПЕРЕАДРЕСАЦИИ - API ENDPOINTS
+# ============================================================================
+
+# API для проверки URL
+[[redirects]]
+  from = "/api/check-url"
+  to = "/.netlify/functions/check-url"
+  status = 200
+  force = true
+
+# API для проверки файлов
+[[redirects]]
+  from = "/api/check-file"
+  to = "/.netlify/functions/check-file"
+  status = 200
+  force = true
+
+# ============================================================================
+# ЗАГОЛОВКИ БЕЗОПАСНОСТИ
+# ============================================================================
+
+# Для статических файлов (Webflow)
 [[headers]]
   for = "/*"
   [headers.values]
-    Access-Control-Allow-Origin = "*"
-    X-Frame-Options = "DENY"
+    # Безопасность
+    X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # HSTS для HTTPS
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# Для API функций - CORS для внешних запросов
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://defenderlink.app"
+    Access-Control-Allow-Methods = "POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Для API endpoints (через редирект)
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://defenderlink.app"
+    Access-Control-Allow-Methods = "POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
+
+# Кэширование CSS и JS из Webflow
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# ============================================================================
+# ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ
+# ============================================================================
+
+[context.production.environment]
+  NODE_ENV = "production"
+
+[context.deploy-preview.environment]
+  NODE_ENV = "development"
+
+[context.branch-deploy.environment]
+  NODE_ENV = "development"

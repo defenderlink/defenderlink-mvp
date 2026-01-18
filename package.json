@@ -1,26 +1,41 @@
 {
   "name": "defenderlink",
-  "version": "1.0.0",
-  "description": "Phishing and malware detection service",
+  "version": "2.0.0",
+  "description": "Unified phishing and malware detection service with AI integration",
   "main": "index.html",
   "scripts": {
     "build": "echo 'No build step needed'",
-    "dev": "netlify dev"
+    "dev": "netlify dev",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "eslint netlify/functions/**/*.js"
   },
   "dependencies": {
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^2.7.0",
     "busboy": "^1.6.0",
     "form-data": "^4.0.0"
   },
   "devDependencies": {
-    "netlify-cli": "^8.0.0"
+    "netlify-cli": "^17.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   },
   "keywords": [
     "security",
     "phishing",
     "malware",
-    "detection"
+    "detection",
+    "url-scanner",
+    "file-scanner",
+    "virustotal",
+    "ai-security"
   ],
   "author": "DefenderLink Team",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/defenderlink.git"
+  }
 }
