@@ -1,4 +1,4 @@
-<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Mon Sep 22 2025 07:41:17 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Mon Feb 09 2026 14:35:16 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="689da3d81c26cf472d5496f1" data-wf-site="689da3d81c26cf472d5496be" lang="ru">
 <head>
   <meta charset="utf-8">
@@ -11,10 +11,338 @@
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
-  <script type="text/javascript">WebFont.load({  google: {    families: ["Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Inter:regular","Syne:regular"]  }});</script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Inter:300,400,500,600,700","Syne:300,400,500,600,700"]  }});</script>
   <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
-  <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-  <link href="images/webclip.png" rel="apple-touch-icon">
+  <link href="images/favicon.JPG" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.JPG" rel="apple-touch-icon">
+  <style>
+/* ============================================================================
+   DEFENDERLINK - WEBFLOW STYLES
+   ============================================================================ */
+/* === БАЗОВЫЕ КАРТОЧКИ === */
+.result-card {
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 14px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+/* === ЗАГОЛОВОК КАРТОЧКИ === */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  flex: 1;
+}
+.card-status {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+}
+/* === ТЕЛО КАРТОЧКИ === */
+.card-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+.card-body p {
+  margin: 6px 0;
+}
+/* ============================================================================
+   ЦВЕТОВЫЕ СХЕМЫ ПО УРОВНЯМ РИСКА
+   ============================================================================ */
+/* Безопасно - Зеленый */
+.result-card.safe {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: #fff;
+  border-left: 5px solid #1e7e34;
+}
+/* Низкий риск - Светло-желтый */
+.result-card.low-risk {
+  background: linear-gradient(135deg, #ffd93d 0%, #ffb700 100%);
+  color: #000;
+  border-left: 5px solid #f39c12;
+}
+/* Подозрительно - Оранжевый */
+.result-card.warning,
+.result-card.suspicious {
+  background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%);
+  color: #fff;
+  border-left: 5px solid #e65100;
+}
+/* Опасно - Красный */
+.result-card.danger,
+.result-card.dangerous {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: #fff;
+  border-left: 5px solid #bd2130;
+}
+/* Критический риск - Темно-красный */
+.result-card.critical {
+  background: linear-gradient(135deg, #8b0000 0%, #dc143c 100%);
+  color: #fff;
+  border-left: 5px solid #660000;
+  animation: pulse-critical 2s infinite;
+}
+@keyframes pulse-critical {
+  0%, 100% { box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3); }
+  50% { box-shadow: 0 4px 20px rgba(220, 20, 60, 0.6); }
+}
+/* Ошибка - Серый */
+.result-card.error {
+  background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+  color: #fff;
+  border-left: 5px solid #495057;
+}
+/* Недоступно - Светло-серый */
+.result-card.unavailable {
+  background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+  color: #495057;
+  border-left: 5px solid #adb5bd;
+}
+/* Ожидание - Синий */
+.result-card.pending {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: #fff;
+  border-left: 5px solid #004085;
+}
+/* ============================================================================
+   ГЛАВНАЯ КАРТОЧКА РЕЗУЛЬТАТА
+   ============================================================================ */
+.result-card.main-result {
+  padding: 24px;
+  margin: 20px 0;
+  font-size: 18px;
+}
+.main-risk-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+.risk-emoji {
+  font-size: 48px;
+  line-height: 1;
+}
+.risk-info {
+  flex: 1;
+}
+.risk-level {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.risk-score {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+.risk-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* ============================================================================
+   СПЕЦИАЛЬНЫЕ КАРТОЧКИ
+   ============================================================================ */
+/* Карточка резюме */
+.result-card.summary-card {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+}
+/* Карточка причины */
+.result-card.reason-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #333 !important;
+  border: 2px solid currentColor;
+}
+/* Карточки рекомендаций */
+.result-card.recommendation-card {
+  border-left-width: 8px;
+}
+/* AI анализ */
+.result-card.ai-analysis {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border-left: 5px solid #5a67d8;
+}
+.ai-explanation {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.ai-disclaimer {
+  font-size: 12px;
+  opacity: 0.8;
+  font-style: italic;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* Детальные карточки */
+.result-card.details {
+  background: #f8f9fa;
+  color: #212529;
+  border-left: 5px solid #6c757d;
+}
+.detail-list {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+.detail-list li {
+  margin: 6px 0;
+  line-height: 1.5;
+}
+.detail-item {
+  margin: 8px 0;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 6px;
+}
+.detail-item strong {
+  color: #495057;
+}
+/* ============================================================================
+   ЗАГОЛОВКИ СЕКЦИЙ
+   ============================================================================ */
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin: 24px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e9ecef;
+}
+/* ============================================================================
+   СОСТОЯНИЕ ЗАГРУЗКИ
+   ============================================================================ */
+.loading-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 20px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loading-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+}
+.loading-subtext {
+  font-size: 14px;
+  color: #6c757d;
+}
+/* ============================================================================
+   ОШИБКИ
+   ============================================================================ */
+.error-details {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+/* ============================================================================
+   МЕТАДАННЫЕ
+   ============================================================================ */
+.meta-info {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e9ecef;
+  font-size: 12px;
+  color: #6c757d;
+}
+.cached-badge {
+  background: #ffc107;
+  color: #000;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+/* ============================================================================
+   АДАПТИВНОСТЬ
+   ============================================================================ */
+@media (max-width: 768px) {
+  .result-card {
+    padding: 14px 16px;
+    margin: 12px 0;
+  }
+  .main-risk-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .risk-emoji {
+    font-size: 36px;
+  }
+  .risk-level {
+    font-size: 20px;
+  }
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .card-status {
+    align-self: flex-start;
+  }
+}
+/* ============================================================================
+   ТЕМНАЯ ТЕМА (опционально)
+   ============================================================================ */
+@media (prefers-color-scheme: dark) {
+  .result-card.details {
+    background: #2d3748;
+    color: #e2e8f0;
+    border-left-color: #4a5568;
+  }
+  .section-title {
+    color: #e2e8f0;
+    border-bottom-color: #4a5568;
+  }
+  .loading-text {
+    color: #e2e8f0;
+  }
+  .detail-item {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .detail-item strong {
+    color: #cbd5e0;
+  }
+}
+</style>
 </head>
 <body>
   <div data-scroll-time="0" class="sg_wrapper">
@@ -4274,80 +4602,338 @@
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=689da3d81c26cf472d5496be" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
-(function(){
-  function el(id){ return document.getElementById(id); }
-  function clearResults(){ const c = el('results-container'); if(c) c.innerHTML = ''; }
-  function makeCard(title, status, details){
+(function () {
+  'use strict';
+  // ============================================================================
+  // HELPERS
+  // ============================================================================
+  const el = (id) => document.getElementById(id);
+  /**
+   * Маппинг статусов на читаемый текст
+   */
+  function statusLabel(status) {
+    const labels = {
+      'safe': 'Безопасно ✅',
+      'low-risk': 'Низкий риск ⚠️',
+      'suspicious': 'Подозрительно ⚠️',
+      'dangerous': 'Опасно ❌',
+      'critical': 'Критический риск 🔴',
+      'error': 'Ошибка проверки ⚡',
+      'unavailable': 'Недоступно 🔌',
+      'pending': 'Ожидание ⏳'
+    };
+    return labels[status] || 'Нет данных ❓';
+  }
+  /**
+   * Маппинг статусов на CSS классы
+   */
+  function statusClass(status) {
+    const classes = {
+      'safe': 'safe',
+      'low-risk': 'low-risk',
+      'suspicious': 'warning',
+      'dangerous': 'danger',
+      'critical': 'critical',
+      'error': 'error',
+      'unavailable': 'unavailable',
+      'pending': 'pending'
+    };
+    return classes[status] || 'unknown';
+  }
+  /**
+   * Эмодзи для уровня риска
+   */
+  function riskEmoji(level) {
+    const emojis = {
+      'safe': '✅',
+      'low-risk': '⚠️',
+      'suspicious': '⚠️',
+      'dangerous': '❌',
+      'critical': '🔴'
+    };
+    return emojis[level] || '❓';
+  }
+  /**
+   * Создание карточки результата
+   */
+  function card(title, status, text, extraClass = '') {
     const div = document.createElement('div');
-    div.className = 'result-card ' + (status==='safe' ? 'safe' : status==='unsafe' ? 'unsafe' : 'warning');
-    div.innerHTML = '<div style="font-weight:700;font-size:16px;">' + title + ': ' + 
-      (status==='safe' ? 'Безопасно ✅' : status==='unsafe' ? 'Опасно ❌' : 'Предупреждение ⚠️') + 
-      '</div>' + '<div style="margin-top:6px;font-size:14px;font-weight:400;">' + (details || '') + '</div>';
+    div.className = `result-card ${statusClass(status)} ${extraClass}`.trim();
+    div.innerHTML = `
+      <div class="card-header">
+        <span class="card-title">${title}</span>
+        <span class="card-status">${statusLabel(status)}</span>
+      </div>
+      ${text ? `<div class="card-body">${text}</div>` : ''}
+    `;
     return div;
   }
-  async function checkUrl(){
-    const url = (el('url-input').value||'').trim();
-    if(!url) return alert('Введите URL');
-    clearResults();
-    el('results-container').innerHTML = '<div>Проверка — подождите...</div>';
-    try{
+  /**
+   * Создание расширенной карточки с деталями
+   */
+  function detailCard(title, data) {
+    const div = document.createElement('div');
+    div.className = 'result-card details';
+    let detailsHtml = '';
+    if (Array.isArray(data)) {
+      detailsHtml = data.map(item => `<li>${item}</li>`).join('');
+      detailsHtml = `<ul class="detail-list">${detailsHtml}</ul>`;
+    } else if (typeof data === 'object') {
+      detailsHtml = Object.entries(data)
+        .map(([key, value]) => `<div class="detail-item"><strong>${key}:</strong> ${value}</div>`)
+        .join('');
+    } else {
+      detailsHtml = `<p>${data}</p>`;
+    }
+    div.innerHTML = `
+      <div class="card-header">
+        <span class="card-title">${title}</span>
+      </div>
+      <div class="card-body">${detailsHtml}</div>
+    `;
+    return div;
+  }
+  /**
+   * Очистка результатов
+   */
+  function clear() {
+    const container = el('results-container');
+    if (container) container.innerHTML = '';
+  }
+  /**
+   * Показать loading
+   */
+  function showLoading() {
+    const container = el('results-container');
+    if (!container) return;
+    container.innerHTML = `
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <div class="loading-text">Проверка URL...</div>
+        <div class="loading-subtext">Это может занять несколько секунд</div>
+      </div>
+    `;
+  }
+  /**
+   * Показать ошибку
+   */
+  function showError(message, details = '') {
+    const container = el('results-container');
+    if (!container) return;
+    container.innerHTML = `
+      <div class="result-card error">
+        <div class="card-header">
+          <span class="card-title">Ошибка проверки ❌</span>
+        </div>
+        <div class="card-body">
+          <p><strong>${message}</strong></p>
+          ${details ? `<p class="error-details">${details}</p>` : ''}
+        </div>
+      </div>
+    `;
+  }
+  // ============================================================================
+  // MAIN FUNCTION - URL CHECK
+  // ============================================================================
+  async function checkUrl() {
+    const urlInput = el('url-input');
+    if (!urlInput) {
+      console.error('URL input element not found');
+      return;
+    }
+    const url = urlInput.value.trim();
+    // Валидация
+    if (!url) {
+      showError('Введите URL для проверки');
+      return;
+    }
+    // Показать loading
+    showLoading();
+    try {
+      // API запрос
       const res = await fetch('https://defenderlink.app/.netlify/functions/check-url', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url })
       });
-      const json = await res.json();
-      clearResults();
-      const arr = json.results || [];
-      const google = arr.find(r => /google/i.test(r.service)) || { status:'warning', details:'Нет данных' };
-      const vt = arr.find(r => /virus/i.test(r.service)) || { status:'warning', details:'Нет данных' };
-      el('results-container').appendChild(makeCard('Первый уровень', google.status, google.details));
-      el('results-container').appendChild(makeCard('Второй уровень', vt.status, vt.details));
-    }catch(e){
-      el('results-container').innerHTML = '<div style="color:red">Ошибка: ' + e.message + '</div>';
+      // Обработка HTTP ошибок
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({ error: 'Unknown error' }));
+        if (res.status === 429) {
+          showError('Слишком много запросов', 'Попробуйте через минуту');
+          return;
+        }
+        if (res.status === 400) {
+          showError('Некорректный URL', errorData.error || 'Проверьте правильность URL');
+          return;
+        }
+        throw new Error(errorData.error || `HTTP ${res.status}`);
+      }
+      const data = await res.json();
+      // Очистка и отображение результатов
+      clear();
+      displayResults(data);
+    } catch (e) {
+      console.error('Check URL error:', e);
+      showError(
+        'Не удалось выполнить проверку',
+        e.message || 'Проверьте подключение к интернету и попробуйте снова'
+      );
     }
   }
-  async function checkFile(){
-    const input = el('file-input');
-    if(!input.files.length) return alert('Выберите файл');
-    const file = input.files[0];
-    clearResults();
-    el('results-container').innerHTML = '<div>Загрузка и проверка файла...</div>';
-    try{
-      const form = new FormData();
-      form.append('file', file);
-      const res = await fetch('https://defenderlink.app/.netlify/functions/check-file', {
-        method: 'POST',
-        body: form
+  // ============================================================================
+  // DISPLAY RESULTS
+  // ============================================================================
+  function displayResults(data) {
+    const container = el('results-container');
+    if (!container) return;
+    // 1. ОБЩАЯ ОЦЕНКА РИСКА (главная карточка)
+    if (data.risk) {
+      const riskCard = document.createElement('div');
+      riskCard.className = `result-card main-result ${statusClass(data.risk.level)}`;
+      riskCard.innerHTML = `
+        <div class="main-risk-header">
+          <div class="risk-emoji">${riskEmoji(data.risk.level)}</div>
+          <div class="risk-info">
+            <div class="risk-level">${statusLabel(data.risk.level)}</div>
+            <div class="risk-score">Оценка риска: ${data.risk.score}/100</div>
+          </div>
+        </div>
+        <div class="risk-meta">
+          <span class="risk-confidence">Уверенность: ${data.risk.confidence}</span>
+          ${data.risk.confidenceScore ? `<span class="risk-confidence-score">(${data.risk.confidenceScore}%)</span>` : ''}
+        </div>
+      `;
+      container.appendChild(riskCard);
+    }
+    // 2. РЕЗЮМЕ (если есть)
+    if (data.summary) {
+      container.appendChild(
+        card('Вывод', data.risk?.level || 'unknown', data.summary, 'summary-card')
+      );
+    }
+    // 3. ГЛАВНАЯ ПРИЧИНА (если есть)
+    if (data.analysis?.primaryReason) {
+      container.appendChild(
+        card('Основная причина', data.risk?.level || 'unknown', data.analysis.primaryReason, 'reason-card')
+      );
+    }
+    // 4. КРИТИЧЕСКИЕ ФЛАГИ (если есть)
+    if (data.analysis?.criticalFlags && data.analysis.criticalFlags.length > 0) {
+      const flagsCard = detailCard('⚠️ Критические индикаторы', data.analysis.criticalFlags.map(flag => {
+        const flagNames = {
+          'google_safe_browsing_threat': 'Угроза обнаружена Google Safe Browsing',
+          'virustotal_malicious': 'Вредоносный контент (VirusTotal)',
+          'domain_extremely_new': 'Очень новый домен (< 7 дней)',
+          'extension_mismatch': 'Несоответствие расширения файла',
+          'virustotal_malware_detected': 'Обнаружено вредоносное ПО'
+        };
+        return flagNames[flag] || flag;
+      }));
+      flagsCard.className += ' critical';
+      container.appendChild(flagsCard);
+    }
+    // 5. РЕЗУЛЬТАТЫ ПРОВЕРОК
+    const checksTitle = document.createElement('div');
+    checksTitle.className = 'section-title';
+    checksTitle.textContent = 'Детальные проверки:';
+    container.appendChild(checksTitle);
+    // Google Safe Browsing
+    if (data.checks?.google) {
+      container.appendChild(
+        card('Google Safe Browsing', data.checks.google.status, data.checks.google.details)
+      );
+    }
+    // VirusTotal
+    if (data.checks?.virustotal) {
+      container.appendChild(
+        card('VirusTotal', data.checks.virustotal.status, data.checks.virustotal.details)
+      );
+    }
+    // WHOIS
+    if (data.checks?.whois) {
+      container.appendChild(
+        card('WHOIS / Возраст домена', data.checks.whois.status, data.checks.whois.details)
+      );
+    }
+    // 6. РЕКОМЕНДАЦИИ
+    if (data.recommendations) {
+      const recsTitle = document.createElement('div');
+      recsTitle.className = 'section-title';
+      recsTitle.textContent = 'Рекомендации:';
+      container.appendChild(recsTitle);
+      if (data.recommendations.user) {
+        container.appendChild(
+          card('Для пользователей', data.risk?.level || 'unknown', data.recommendations.user, 'recommendation-card')
+        );
+      }
+      if (data.recommendations.business) {
+        container.appendChild(
+          card('Для бизнеса', data.risk?.level || 'unknown', data.recommendations.business, 'recommendation-card')
+        );
+      }
+      if (data.recommendations.technical) {
+        container.appendChild(
+          card('Технические', data.risk?.level || 'unknown', data.recommendations.technical, 'recommendation-card')
+        );
+      }
+    }
+    // 7. AI АНАЛИЗ (если доступен)
+    if (data.ai && data.ai.explanation) {
+      const aiCard = document.createElement('div');
+      aiCard.className = 'result-card ai-analysis';
+      aiCard.innerHTML = `
+        <div class="card-header">
+          <span class="card-title">🤖 AI Анализ</span>
+        </div>
+        <div class="card-body">
+          <div class="ai-explanation">${data.ai.explanation.replace(/\n/g, '<br>')}</div>
+          ${data.ai.disclaimer ? `<div class="ai-disclaimer">${data.ai.disclaimer}</div>` : ''}
+        </div>
+      `;
+      container.appendChild(aiCard);
+    }
+    // 8. МЕТАДАННЫЕ (для дебага, опционально)
+    if (data.timestamp) {
+      const metaDiv = document.createElement('div');
+      metaDiv.className = 'meta-info';
+      metaDiv.innerHTML = `
+        <small>Проверено: ${new Date(data.timestamp).toLocaleString('ru-RU')}</small>
+        ${data.cached ? '<small class="cached-badge">⚡ Из кэша</small>' : ''}
+      `;
+      container.appendChild(metaDiv);
+    }
+  }
+  // ============================================================================
+  // INITIALIZATION
+  // ============================================================================
+  function init() {
+    const checkBtn = el('check-url-btn');
+    const urlInput = el('url-input');
+    if (checkBtn) {
+      checkBtn.addEventListener('click', checkUrl);
+    }
+    // Enter key support
+    if (urlInput) {
+      urlInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          checkUrl();
+        }
       });
-      const json = await res.json();
-      clearResults();
-      const vt = (json.results||[json])[0];
-      el('results-container').appendChild(makeCard('Второй уровень', vt.status, vt.details));
-    }catch(e){
-      el('results-container').innerHTML = '<div style="color:red">Ошибка: ' + e.message + '</div>';
     }
+    // Проверка наличия обязательных элементов
+    if (!checkBtn) console.warn('Button #check-url-btn not found');
+    if (!urlInput) console.warn('Input #url-input not found');
+    if (!el('results-container')) console.warn('Container #results-container not found');
   }
-  document.addEventListener('DOMContentLoaded', () => {
-    const btnUrl = el('check-url-btn');
-    const btnFile = el('check-file-btn');
-    if(btnUrl) btnUrl.addEventListener('click', checkUrl);
-    if(btnFile) btnFile.addEventListener('click', checkFile);
-  });
+  // Запуск при загрузке DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>
-  <style>
-  .result-card {
-    border-radius: 10px;
-    padding: 14px;
-    margin: 12px 0;
-    font-weight: 600;
-    color: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  }
-  .result-card.safe { background: #28a745; }
-  .result-card.unsafe { background: #dc3545; }
-  .result-card.warning { background: #ffc107; color:#000; }
-</style>
 </body>
 </html>
